@@ -34,7 +34,7 @@ export class CognitoUtil {
             Auth: {
                 identityPoolId: this.clientService.clientDetails.Identity,
                 // REQUIRED - Amazon Cognito Region
-                region: 'us-east-2',
+                region: 'us-east-1',
                 // OPTIONAL - Amazon Cognito User Pool ID
                 userPoolId: this.clientService.clientDetails.UserPool, 
                 // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
@@ -43,7 +43,7 @@ export class CognitoUtil {
         });
         this.initGroups();
     }
-
+ 
     /**
      * Moncs - 
      * Collection of Getters for our BehaviorSubjects to expose Observables

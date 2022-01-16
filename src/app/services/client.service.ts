@@ -33,12 +33,12 @@ export class ClientService {
     }
     mockClient(): Observable<ClientModel> {
         var vClientModel: ClientModel = new ClientModel();
-        vClientModel.ClientId = "99IK2BLeIEWdV6bF9jFmcQ==";
-        vClientModel.Name = "Localhost Demo";
-        vClientModel.Subdomain = "demo";
-        vClientModel.Identity = "us-east-2:eadb272f-1ede-4a83-aaaf-ae0e3c939e04";
-        vClientModel.UserPool = "us-east-2_cxrAWVUPr";
-        vClientModel.WebClientId = "2lrbi6dmu8j1ob4heajnkbi9ml";
+        vClientModel.ClientId = "1";
+        vClientModel.Name = "Local Smallman";
+        vClientModel.Subdomain = "JustTheTip";
+        vClientModel.Identity = "us-east-1:7f364710-af1d-45cf-89fe-98465394e702";
+        vClientModel.UserPool = "us-east-1_TJ2ZnsoqK";
+        vClientModel.WebClientId = "4564lhafefcdeumu6c7cg30lhc";
         vClientModel.Website = "http://localhost:4200";
 
         return Observable.create( observer => {

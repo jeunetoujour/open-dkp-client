@@ -8,48 +8,42 @@ import { UserRequest } from '../models/UserRequest';
 import { CognitoUtil } from './cognito.service';
 import { ClientService } from './client.service';
 import { ClientModel } from '../models/ClientModel';
+import { Observable, BehaviorSubject } from 'rxjs'
+import * as _ from 'lodash'
 
 Amplify.configure({
     API: {
         endpoints: [{
                 name: "CharacterAPIs",
-                endpoint: "https://xxxx.execute-api.us-east-2.amazonaws.com",
-                region: "us-east-2"
+                endpoint: "http://localhost:8080",
             },
             {
                 name: "PoolAPIs",
-                endpoint: "https://xxxx.execute-api.us-east-2.amazonaws.com",
-                region: "us-east-2"
+                endpoint: "http://localhost:8080",
             },
             {
                 name: "ItemAPIs",
-                endpoint: "https://xxxx.execute-api.us-east-2.amazonaws.com",
-                region: "us-east-2"
+                endpoint: "http://localhost:8080",
             },
             {
                 name: "AdjustmentAPIs",
-                endpoint: "https://xxxx.execute-api.us-east-2.amazonaws.com",
-                region: "us-east-2"
+                endpoint: "http://localhost:8080",
             },
             {
                 name: "RaidAPIs",
-                endpoint: "https://xxxx.execute-api.us-east-2.amazonaws.com",
-                region: "us-east-2"
+                endpoint: "http://localhost:8080",
             },
             {
                 name: "DkpAPIs",
-                endpoint: "https://xxxx.execute-api.us-east-2.amazonaws.com",
-                region: "us-east-2"
+                endpoint: "http://localhost:8080",
             },
             {
                 name: "AdminAPIs",
-                endpoint: "https://xxxx.execute-api.us-east-2.amazonaws.com",
-                region: "us-east-2"
+                endpoint: "http://localhost:8080",
             },
             {
                 name: "AuditAPIs",
-                endpoint: "https://xxxx.execute-api.us-east-2.amazonaws.com",
-                region: "us-east-2"
+                endpoint: "http://localhost:8080",
             }
         ]
     }
@@ -65,31 +59,31 @@ export class DkpService {
         return this.pendingRequestsSubject.asObservable();
     }
     fCharacterApi = `CharacterAPIs`;
-    fCharacterPath = `/beta/characters`;
+    fCharacterPath = `/characters`;
 
     fPoolApi = `PoolAPIs`;
-    fPoolPath = `/beta/pools`;
+    fPoolPath = `/pools`;
 
     fItemApi = `ItemAPIs`;
-    fItemPath = `/beta/items`;
+    fItemPath = `/items`;
 
     fAdjustmentApi = `AdjustmentAPIs`;
-    fAdjustmentPath = `/beta/adjustments`;
+    fAdjustmentPath = `/adjustments`;
 
     fRaidApi = `RaidAPIs`;
-    fRaidPath = `/beta/raids`;
+    fRaidPath = `/raids`;
 
     fDkpApi = `DkpAPIs`;
-    fDkpPath = `/beta/dkp`;
+    fDkpPath = `/dkp`;
 
     fAuditApi = `AuditAPIs`;
-    fAuditPath = `/beta`;
+    fAuditPath = `/`;
 
 
     fAdminApis = `AdminAPIs`;
-    fAdminPath = `/beta/admin`;
-    fUserRequestPath = `/beta/requests`;
-    fCognitoPath = `/beta/admin/cognito`;
+    fAdminPath = `/admin`;
+    fUserRequestPath = `/requests`;
+    fCognitoPath = `/admin/cognito`;
 
     public tokenID: any;
     myInit = { // OPTIONAL
