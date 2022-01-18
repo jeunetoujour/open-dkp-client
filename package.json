@@ -45,7 +45,7 @@
     "amazon-cognito-identity-js": "3.0.4",
     "aws-amplify": "1.1.11",
     "aws-amplify-angular": "2.0.14",
-    "aws-sdk": "2.369.0",
+    "aws-sdk": "2.472.0",
     "bootstrap": "4.1.2",
     "chart.js": "2.7.2",
     "core-js": "2.5.7",
