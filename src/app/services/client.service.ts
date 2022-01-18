@@ -29,16 +29,16 @@ export class ClientService {
                 vArray.push(client);
                 observer.next(vArray);
             })
-        });        
+        });
     }
     mockClient(): Observable<ClientModel> {
         var vClientModel: ClientModel = new ClientModel();
         vClientModel.ClientId = "1";
         vClientModel.Name = "Local Smallman";
         vClientModel.Subdomain = "JustTheTip";
-        vClientModel.Identity = "us-east-1:7f364710-af1d-45cf-89fe-98465394e702";
-        vClientModel.UserPool = "us-east-1_TJ2ZnsoqK";
-        vClientModel.WebClientId = "4564lhafefcdeumu6c7cg30lhc";
+        vClientModel.Identity = "us-east-2:bcbf23eb-3c18-4c7f-af76-d500dde7e834";
+        vClientModel.UserPool = "us-east-2_PDPRjZtGl";
+        vClientModel.WebClientId = "2v5fhat79fbr4rso8h0ijsf3df";
         vClientModel.Website = "http://localhost:4200";
 
         return Observable.create( observer => {
