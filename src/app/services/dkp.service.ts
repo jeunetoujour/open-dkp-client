@@ -15,35 +15,43 @@ Amplify.configure({
     API: {
         endpoints: [{
                 name: "CharacterAPIs",
-                endpoint: "http://localhost:8080",
+                endpoint: "https://99bof0qi82.execute-api.us-east-2.amazonaws.com",
+                region: "us-east-2"
             },
             {
                 name: "PoolAPIs",
-                endpoint: "http://localhost:8080",
+                endpoint: "https://g6r8gpv06g.execute-api.us-east-2.amazonaws.com",
+                region: "us-east-2"
             },
             {
                 name: "ItemAPIs",
-                endpoint: "http://localhost:8080",
+                endpoint: "https://ipzw3687dc.execute-api.us-east-2.amazonaws.com",
+                region: "us-east-2"
             },
             {
                 name: "AdjustmentAPIs",
-                endpoint: "http://localhost:8080",
+                endpoint: "https://om5h7h42m7.execute-api.us-east-2.amazonaws.com",
+                region: "us-east-2"
             },
             {
                 name: "RaidAPIs",
-                endpoint: "http://localhost:8080",
+                endpoint: "https://7g00dp6m9i.execute-api.us-east-2.amazonaws.com",
+                region: "us-east-2"
             },
             {
                 name: "DkpAPIs",
-                endpoint: "http://localhost:8080",
+                endpoint: "https://c5aimk6lfb.execute-api.us-east-2.amazonaws.com",
+                region: "us-east-2"
             },
             {
                 name: "AdminAPIs",
-                endpoint: "http://localhost:8080",
+                endpoint: "https://kl4g6xqdza.execute-api.us-east-2.amazonaws.com",
+                region: "us-east-2"
             },
             {
                 name: "AuditAPIs",
-                endpoint: "http://localhost:8080",
+                endpoint: "https://p77plyj0cf.execute-api.us-east-2.amazonaws.com",
+                region: "us-east-2"
             }
         ]
     }
@@ -54,40 +62,43 @@ Amplify.configure({
 })
 export class DkpService {
 
-    private pendingRequestsSubject = new BehaviorSubject <number> (0);    
+    private pendingRequestsSubject = new BehaviorSubject <number> (0);
     pendingRequests(): Observable <number> {
         return this.pendingRequestsSubject.asObservable();
     }
     fCharacterApi = `CharacterAPIs`;
-    fCharacterPath = `/characters`;
+    fCharacterPath = `/beta/characters`;
 
     fPoolApi = `PoolAPIs`;
-    fPoolPath = `/pools`;
+    fPoolPath = `/beta/pools`;
 
     fItemApi = `ItemAPIs`;
-    fItemPath = `/items`;
+    fItemPath = `/beta/items`;
 
     fAdjustmentApi = `AdjustmentAPIs`;
-    fAdjustmentPath = `/adjustments`;
+    fAdjustmentPath = `/beta/adjustments`;
 
     fRaidApi = `RaidAPIs`;
-    fRaidPath = `/raids`;
+    fRaidPath = `/beta/raids`;
 
     fDkpApi = `DkpAPIs`;
-    fDkpPath = `/dkp`;
+    fDkpPath = `/beta/dkp`;
 
     fAuditApi = `AuditAPIs`;
-    fAuditPath = `/`;
+    fAuditPath = `/beta`;
 
 
     fAdminApis = `AdminAPIs`;
-    fAdminPath = `/admin`;
-    fUserRequestPath = `/requests`;
-    fCognitoPath = `/admin/cognito`;
+    fAdminPath = `/beta/admin`;
+    fUserRequestPath = `/beta/requests`;
+    fCognitoPath = `/beta/admin/cognito`;
 
     public tokenID: any;
     myInit = { // OPTIONAL
-        headers: {} // OPTIONAL
+        headers: { "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PUT",
+          "Access-Control-Allow-Credentials": "true"} // OPTIONAL
     }
     private clientDetails: ClientModel;
     constructor(private cognitoService: CognitoUtil,
@@ -288,7 +299,7 @@ export class DkpService {
                 forceCache: "true"
             }
         }
-        return API.get(this.fDkpApi, this.fDkpPath, data);        
+        return API.get(this.fDkpApi, this.fDkpPath, data);
     }
 
     /**
@@ -410,7 +421,7 @@ export class DkpService {
 
     /**
      * Simple update operation of a raid
-     * @param pRaid RaidModel to be updated 
+     * @param pRaid RaidModel to be updated
      */
     updateRaid(pRaid: RaidModel): any {
         let data = {
@@ -525,7 +536,7 @@ export class DkpService {
         //Need to notify others that pending request value has changed
         return new Promise( (resolve,reject) => {
             API.get(this.fAdminApis, this.fUserRequestPath, data).then( response => {
-                var vFiltered = _.filter(response, (x: any) => { return x.RequestStatus == 0 });          
+                var vFiltered = _.filter(response, (x: any) => { return x.RequestStatus == 0 });
                 this.pendingRequestsSubject.next(vFiltered.length);
                 resolve(response);
             }).catch( error => {

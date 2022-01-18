@@ -59,6 +59,7 @@
     "ngx-cookie-service": "^2.1.0",
     "ngx-json-viewer": "^2.4.0",
     "ngx-perfect-scrollbar": "^6.2.0",
+    "node-sass": "^4.9.0",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
     "serve": "^13.0.2",
